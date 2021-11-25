@@ -6,7 +6,7 @@ const Navbar = () => {
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            Navbar
+            BlogSpace
           </a>
           <button
             class="navbar-toggler"
@@ -23,12 +23,12 @@ const Navbar = () => {
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">
-                  Home
+                  Explore
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  Link
+                  My Blogs
                 </a>
               </li>
             </ul>
