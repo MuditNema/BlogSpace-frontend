@@ -9,3 +9,17 @@
         width: 40%;
     }
 }
+.fas:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width : 991px) {
+    .navform{
+        flex-direction: column;
+        width: fit-content;
+        
+    }
+    .navform-btn{
+        margin-top: 3px;
+    }
+}
