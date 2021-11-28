@@ -5,28 +5,28 @@ const Login = () => {
         <>
     <form action="" >
       <div className="container mt-5">
-        <div class="form-floating mb-3">
+        <div className="form-floating mb-3">
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="email"
             name="email"
             placeholder="name@example.com"
           />
-          <label for="email">Email address</label>
+          <label htmlFor="email">Email address</label>
         </div>
-        <div class="form-floating">
+        <div className="form-floating">
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="password"
             name="password"
             placeholder="Password"
           />
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
         </div>
         <div className='text-center'>
-            <button type="button" class="btn btn-outline-primary mt-2" style={{width:'fit-content' ,margin:'auto'}}>Login</button>
+            <button type="button" className="btn btn-outline-primary mt-2" style={{width:'fit-content' ,margin:'auto'}}>Login</button>
         </div>
       </div>
     </form>

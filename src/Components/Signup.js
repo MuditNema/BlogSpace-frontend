@@ -5,48 +5,48 @@ const Signup = () => {
     <>
     <form action="" >
       <div className="container mt-3">
-        <div class="form-floating mb-3">
+        <div className="form-floating mb-3">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="fname"
             name="fname"
             placeholder="name@example.com"
           />
-          <label for="fname">First Name</label>
+          <label htmlFor="fname">First Name</label>
         </div>
-        <div class="form-floating mb-3">
+        <div className="form-floating mb-3">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="lname"
             name="lname"
             placeholder="name@example.com"
           />
-          <label for="lname">Last Name</label>
+          <label htmlFor="lname">Last Name</label>
         </div>
-        <div class="form-floating mb-3">
+        <div className="form-floating mb-3">
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="email"
             name="email"
             placeholder="name@example.com"
           />
-          <label for="email">Email address</label>
+          <label htmlFor="email">Email address</label>
         </div>
-        <div class="form-floating">
+        <div className="form-floating">
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="password"
             name="password"
             placeholder="Password"
           />
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
         </div>
         <div className='text-center'>
-            <button type="button" class="btn btn-outline-primary mt-2" style={{width:'fit-content' ,margin:'auto'}}>SignUp</button>
+            <button type="button" className="btn btn-outline-primary mt-2" style={{width:'fit-content' ,margin:'auto'}}>SignUp</button>
         </div>
       </div>
     </form>
