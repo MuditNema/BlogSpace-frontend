@@ -1,6 +1,10 @@
 import React from "react";
-
+import { useState ,useEffect} from "react";
 const Navbar = () => {
+  const [LoggedIN, setLoggedIN] = useState(true);
+  useEffect(() => {
+    setLoggedIN(!LoggedIN);
+  }, [])
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -33,13 +37,13 @@ const Navbar = () => {
               </li>
             </ul>
             <form className="d-flex navform">
-              <button className="btn btn-outline-success mx-2 navform-btn" type="submit">
+              <button className={`${LoggedIN?'':'d-none'} btn btn-outline-success mx-2 navform-btn`}type="submit">
                 LogOut
               </button>
-              <button className="btn btn-outline-success mx-2 navform-btn" type="submit">
+              <button className={` ${!LoggedIN?'':'d-none'} btn btn-outline-success mx-2 navform-btn`} type="submit">
                 LogIn
               </button>
-              <button className="btn btn-outline-success mx-2 navform-btn" type="submit">
+              <button className={` ${!LoggedIN?'':'d-none'} btn btn-outline-success mx-2 navform-btn`}type="submit">
                 SignUp
               </button>
             </form>

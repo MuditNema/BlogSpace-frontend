@@ -1,5 +1,5 @@
 import React from 'react'
-import UserContext from './usercontext';
+import UserContext from './Usercontext';
 import { useState } from 'react'
 const Userstate = (props) => {
     const host = 'http://localhost:5000/user/';
@@ -9,7 +9,7 @@ const Userstate = (props) => {
     const CreateUser = async (fname,lname,email,password) => {
         const url = host.concat('createuser')
         try {
-            const response = await fetch(url, {
+            const response = await fetch(url, {                 
                 method: 'POST', 
                 mode: 'cors', 
                 headers: {

@@ -1,20 +1,15 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect ,useContext} from "react";
 import BlogItem from "./BlogItem";
+import BlogContext from "../BlogContext/Blogcontext";
+
+
 const Explore = () => {
-  const [AllBlogs, setAllBlogs] = useState([]);
+  const blogcontext  = useContext(BlogContext);
+  const {AllBlogs,GetAllBlogs} = blogcontext;
   useEffect(() => {
-    setAllBlogs([
-      { name: "Blog!", title: "Lmao" },
-      { name: "Blog!2", title: "Lmao2" },
-      { name: "Blog!2", title: "Lmao2" },
-      { name: "Blog!2", title: "Lmao2" },
-      { name: "Blog!2", title: "Lmao2" },
-      { name: "Blog!2", title: "Lmao2" },
-      { name: "Blog!2", title: "Lmao2" },
-      { name: "Blog!2", title: "Lmao2" },
-      // eslint-disable-next-line
-    ]);
+    GetAllBlogs();
+    // eslint-disable-next-line
   }, []);
   return (
     <>

@@ -1,31 +1,32 @@
-import React from 'react'
-import BlogContext from './blogcontext'
+import React, { useContext } from 'react'
+import BlogContext from './Blogcontext'
 import { useState } from 'react'
+import UserContext from '../UserContext/Usercontext';
 const Blogstate = (props) => {
     const host = "http://localhost:5000/blog/"
-    const [Success, setSuccess] = useState(false);
+    const usercontext = useContext(UserContext);
+    const {Success,authtoken} = usercontext;
     const [AllBlogs, setAllBlogs] = useState([]);
     const [MyBlogs, setMyBlogs] = useState([]);
-    const [authtoken, setauthtoken] = useState('');
     //GetAllBlogs function to fetch all the blogs present in the database
     const GetAllBlogs = async () => {
-        const url = host.concat('/fetchAllblogs')
-        if(!Success){
-            console.log('User not LoggedIn !! Nothing to display')
-            setAllBlogs([]);
-            setMyBlogs([]);
-            return ;
-        }
-        const response = await fetch(url, {
-            method: 'GET',
-            mode: 'cors', 
-            headers: {
-              'Content-Type': 'application/json',
-              'authtoken' : authtoken
-            }
-        });
-        const result = await response.json();
-        setAllBlogs(result.reverse());
+        
+            const url = host.concat('/fetchAllblogs')
+            // if(!Success){
+            //     console.log('User not LoggedIn !! Nothing to display')
+            //     setAllBlogs([]);
+            //     return ;
+            // }
+            const response = await fetch(url, {
+                method : 'GET',
+                headers : {
+                "auth-token" : authtoken
+                }
+            });
+            let result = await response.json();
+            console.log(result);
+            setAllBlogs(result);
+        
     }
 
     //GetMyBlogs functions to fetch all the blogs of a particular user (if any).
@@ -39,10 +40,9 @@ const Blogstate = (props) => {
         }
         const response = await fetch(url, {
             method: 'GET', 
-            mode: 'cors', 
             headers: {
               'Content-Type': 'application/json',
-              'authtoken' : authtoken
+              'auth-token' : authtoken
             }
             
         });
@@ -61,10 +61,9 @@ const Blogstate = (props) => {
         }
         const response = await fetch(url, {
             method: 'POST', 
-            mode: 'cors', 
             headers: {
               'Content-Type': 'application/json',
-              'authtoken' : authtoken
+              'auth-token' : authtoken
             },
             body: JSON.stringify({title,content})
         });
@@ -84,10 +83,9 @@ const Blogstate = (props) => {
         }
         const response = await fetch(url, {
             method: 'DELETE', 
-            mode: 'cors', 
             headers: {
               'Content-Type': 'application/json',
-              'authtoken' : authtoken
+              'auth-token' : authtoken
             }
         });
         const result = response.json();
@@ -105,10 +103,9 @@ const Blogstate = (props) => {
         }
         const response = await fetch(url, {
             method: 'DELETE', 
-            mode: 'cors', 
             headers: {
               'Content-Type': 'application/json',
-              'authtoken' : authtoken
+              'auth-token' : authtoken
             }
         });
         const result = response.json();
@@ -126,10 +123,9 @@ const Blogstate = (props) => {
         }
         const response = await fetch(url, {
             method: 'DELETE', 
-            mode: 'cors', 
             headers: {
               'Content-Type': 'application/json',
-              'authtoken' : authtoken
+              'auth-token' : authtoken
             },
             body: JSON.stringify({title,content})
         });
@@ -138,7 +134,7 @@ const Blogstate = (props) => {
     }
 
     return (
-        <BlogContext.Provider value={GetAllBlogs,GetMyBlogs}>
+        <BlogContext.Provider value={{MyBlogs,AllBlogs,GetAllBlogs,GetMyBlogs,AddaBlog,UpdateBlog,DeleteAllBlog,DeleteABlog}}>
             {props.children}
         </BlogContext.Provider>
     )
