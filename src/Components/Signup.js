@@ -1,7 +1,9 @@
 import React from "react";
 import UserContext from "../UserContext/Usercontext";
 import { useContext ,useState } from "react";
+import { useHistory } from "react-router-dom";
 const Signup = () => {
+  const history = useHistory();
   const [UserCreds, setUserCreds] = useState({fname:'',lname:'',email:'',password:''});
   const [Fname, setFname] = useState('')
   const [Lname, setLname] = useState('')
@@ -17,8 +19,10 @@ const Signup = () => {
     setUserCreds({...UserCreds,[e.target.name] : e.target.value})
   }
   const SubmitClick = async (e) => {
-    CreateUser(UserCreds.fname,UserCreds.lname,UserCreds.email,UserCreds.password);
     e.preventDefault();
+    if(CreateUser(UserCreds.fname,UserCreds.lname,UserCreds.email,UserCreds.password)){
+      history.push('/login');
+    }
   }
   return (
     <>

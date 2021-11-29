@@ -1,20 +1,23 @@
 import React,{useState,useContext} from 'react'
+import { useHistory } from 'react-router-dom';
 import UserContext from '../UserContext/Usercontext';
 const Login = () => {
+  const history = useHistory();
   const [UserCreds, setUserCreds] = useState({email:'',password:''});
   const [Email, setEmail] = useState('')
   const [Password, setPassword] = useState('')
   const usercontext = useContext(UserContext);
   const {LoginUser} = usercontext;
   const KeyChange = async (e) => {
-
     if(e.target.name === 'email') {setEmail(e.target.value)}
     if(e.target.name === 'password') {setPassword(e.target.value)}
     setUserCreds({...UserCreds,[e.target.name] : e.target.value})
   }
   const SubmitClick = async (e) => {
-    LoginUser(UserCreds.email,UserCreds.password);
     e.preventDefault();
+    if(LoginUser(UserCreds.email,UserCreds.password)){
+      history.push('/myblogs');
+    }
   }
     return (
         <>
@@ -45,7 +48,7 @@ const Login = () => {
           <label htmlFor="password">Password</label>
         </div>
         <div className='text-center'>
-            <button type="button" disabled={(Email.length===0 || Password.length===0)} className="btn btn-outline-primary mt-2" style={{width:'fit-content' ,margin:'auto'}}>Login</button>
+            <button type="submit" disabled={(Email.length===0 || Password.length===0)} className="btn btn-outline-primary mt-2" style={{width:'fit-content' ,margin:'auto'}}>Login</button>
         </div>
       </div>
     </form>

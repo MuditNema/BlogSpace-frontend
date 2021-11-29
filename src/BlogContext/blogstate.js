@@ -18,12 +18,9 @@ const Blogstate = (props) => {
             //     return ;
             // }
             const response = await fetch(url, {
-                method : 'GET',
-                headers : {
-                "auth-token" : authtoken
-                }
+                method : 'GET'
             });
-            let result = await response.json();
+            const result = await response.json();
             console.log(result);
             setAllBlogs(result);
         

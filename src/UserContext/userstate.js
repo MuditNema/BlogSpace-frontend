@@ -11,14 +11,15 @@ const Userstate = (props) => {
         try {
             const response = await fetch(url, {                 
                 method: 'POST', 
-                mode: 'cors', 
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 
                 body: JSON.stringify({fname,lname,email,password}) 
               });
-              console.log(await response.json());
+              const result = await response.json();
+              console.log(result);
+              return result.success;
         } catch (error) {
             console.log(error);
         }
@@ -40,12 +41,13 @@ const Userstate = (props) => {
               setSuccess(result.success);
               setauthtoken(result.authtoken);
               console.log(result);
+              return result.success;
         } catch (error) {
             console.log(error);
         }
     }
     return (
-        <UserContext.Provider value={CreateUser,Success,authtoken,LoginUser}>
+        <UserContext.Provider value={{CreateUser,Success,authtoken,LoginUser}}>
             {props.children}
         </UserContext.Provider>
     )
