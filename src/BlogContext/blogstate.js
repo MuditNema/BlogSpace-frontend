@@ -1,6 +1,7 @@
 import React from 'react'
 import BlogContext from './blogcontext'
-const blogstate = (props) => {
+import { useState } from 'react'
+const Blogstate = (props) => {
     const host = "http://localhost:5000/blog/"
     const [Success, setSuccess] = useState(false);
     const [AllBlogs, setAllBlogs] = useState([]);
@@ -137,10 +138,10 @@ const blogstate = (props) => {
     }
 
     return (
-        <BlogContext.Provider value={val,GetAllBlogs,GetMyBlogs}>
+        <BlogContext.Provider value={GetAllBlogs,GetMyBlogs}>
             {props.children}
         </BlogContext.Provider>
     )
 }
 
-export default blogstate
+export default Blogstate
