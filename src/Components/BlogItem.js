@@ -105,7 +105,7 @@ const BlogItem = (props) => {
               <i
                 className={`${props.editable ? "" : "d-none"} fas fa-pen mx-2`}
               ></i>
-              <i className={`${props.editable ? "" : "d-none"} fas fa-trash-alt`}></i>
+              <i className={`${props.editable ? "" : "d-none"} fas fa-trash-alt mx-2`}></i>
               <a href="#" className="btn btn-primary">
                 See The Blog
               </a>

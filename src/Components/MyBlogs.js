@@ -5,26 +5,29 @@ import UserContext from "../UserContext/Usercontext";
 import BlogItem from "./BlogItem";
 const MyBlogs = () => {
   const blogcontext = useContext(BlogContext);
-  const { MyBlogs, GetMyBlogs , AddaBlog} = blogcontext;
+  const { MyBlogs, GetMyBlogs, AddaBlog } = blogcontext;
   useEffect(() => {
     GetMyBlogs();
     // eslint-disable-next-line
   }, []);
 
-  const [Title, setTitle] = useState('')
-  const [Content, setContent] = useState('')
-  const [BlogItems, setBlogItems] = useState({title:'',content:''});
+  const [Title, setTitle] = useState("");
+  const [Content, setContent] = useState("");
+  const [BlogItems, setBlogItems] = useState({ title: "", content: "" });
   const OnKeyChange = (e) => {
-    if(e.target.name==='title') {setTitle(e.target.value)}
-    if(e.target.name==='content') {setContent(e.target.value)}
-    setBlogItems({...BlogItems,[e.target.name]:e.target.value})
-  }
+    if (e.target.name === "title") {
+      setTitle(e.target.value);
+    }
+    if (e.target.name === "content") {
+      setContent(e.target.value);
+    }
+    setBlogItems({ ...BlogItems, [e.target.name]: e.target.value });
+  };
 
   const CreateABlog = (e) => {
     e.preventDefault();
-    AddaBlog(BlogItems.title,BlogItems.content)
-  }
-
+    AddaBlog(BlogItems.title, BlogItems.content);
+  };
 
   return (
     <>
@@ -47,7 +50,6 @@ const MyBlogs = () => {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-                
               ></button>
             </div>
 
@@ -105,19 +107,33 @@ const MyBlogs = () => {
         </div>
       </div>
       {/* End of modal */}
-      <div className=" container mx-6">
+      <div className="container mx-6">
         <div
           className="card text-black bg-muted my-3 mx-3"
           style={{ width: "100%" }}
         >
-          <a
-            className="btn btn-outline-secondary my-2 mx-3"
-            href="#"
-            role="button"
-            style={{ width: "fit-content" }}
-          >
-            View Profile
-          </a>
+          <div className='d-flex flex-row flex-wrap justify-content-between blog-menu'>
+            <div>
+              <a
+                className=" btn btn-outline-secondary my-2 mx-3"
+                href="#"
+                role="button"
+                style={{ width: "fit-content" }}
+              >
+                View Profile
+              </a>
+            </div>
+            <div>
+              <a
+                className="btn btn-outline-secondary my-2 mx-3"
+                href="#"
+                role="button"
+                style={{ width: "fit-content" }}
+              >
+                Delete My All Blogs
+              </a>
+            </div>
+          </div>
           <div className="card-body">
             <h5 className="card-title">
               Write Blog
@@ -135,7 +151,7 @@ const MyBlogs = () => {
         </div>
         <div className=" row">
           {MyBlogs.map((e, i) => {
-            return <BlogItem element={e}  editable={true} index={i} />;
+            return <BlogItem element={e} editable={true} index={i} />;
           })}
         </div>
       </div>
