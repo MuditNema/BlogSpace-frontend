@@ -30,8 +30,7 @@ const Userstate = (props) => {
         const url = host.concat('loginuser')
         try {
             const response = await fetch(url, {
-                method: 'POST', 
-                mode: 'cors', 
+                method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
@@ -47,7 +46,7 @@ const Userstate = (props) => {
         }
     }
     return (
-        <UserContext.Provider value={{CreateUser,Success,authtoken,LoginUser}}>
+        <UserContext.Provider value={{setauthtoken,CreateUser,Success,authtoken,LoginUser}}>
             {props.children}
         </UserContext.Provider>
     )

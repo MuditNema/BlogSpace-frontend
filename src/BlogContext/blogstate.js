@@ -22,28 +22,26 @@ const Blogstate = (props) => {
             });
             const result = await response.json();
             console.log(result);
-            setAllBlogs(result);
+            setAllBlogs(result.reverse());
         
     }
 
     //GetMyBlogs functions to fetch all the blogs of a particular user (if any).
     const GetMyBlogs = async () => {
         const url = host.concat('fetchblogs');
+        console.log(Success,authtoken);
         if(!Success){
             console.log('User not LoggedIn !! Nothing to display')
-            setAllBlogs([]);
-            setMyBlogs([]);
             return ;
         }
         const response = await fetch(url, {
             method: 'GET', 
             headers: {
-              'Content-Type': 'application/json',
               'auth-token' : authtoken
             }
-            
         });
         const result = await response.json();
+        console.log(result);
         setMyBlogs(result.reverse());
     }
 

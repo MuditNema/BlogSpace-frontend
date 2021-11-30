@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import BlogContext from "../BlogContext/Blogcontext";
+import UserContext from "../UserContext/Usercontext";
 import BlogItem from "./BlogItem";
 const MyBlogs = () => {
   const blogcontext = useContext(BlogContext);
@@ -13,64 +14,64 @@ const MyBlogs = () => {
     <>
       {/* Paste the modal here */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 What's on your mind ?
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
 
-            <div class="modal-body">
+            <div className="modal-body">
               <form>
-                <div class="mb-3">
-                  <label for="title" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="title" className="form-label">
                     Title
                   </label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="title"
                     name="title"
                     aria-describedby="emailHelp"
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="content" class="form-label">
+                <div className="mb-3">
+                  <label htmlFor="content" className="form-label">
                     Content
                   </label>
                   <textarea
                     style={{ height: `28vw` }}
                     type="text"
                     name="content"
-                    class="form-control"
+                    className="form-control"
                     id="content"
                   />
                 </div>
 
-                <div class="modal-footer">
+                <div className="modal-footer">
                   <button
                     type="button"
-                    class="btn btn-secondary"
+                    className="btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
                     Close
                   </button>
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     data-bs-dismiss="modal"
                   >
                     Save changes

@@ -15,7 +15,8 @@ const Login = () => {
   }
   const SubmitClick = async (e) => {
     e.preventDefault();
-    if(LoginUser(UserCreds.email,UserCreds.password)){
+    let ans = await LoginUser(UserCreds.email,UserCreds.password);
+    if(ans){
       history.push('/myblogs');
     }
   }
