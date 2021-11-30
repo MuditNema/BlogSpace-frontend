@@ -32,6 +32,7 @@ const Blogstate = (props) => {
         console.log(Success,authtoken);
         if(!Success){
             console.log('User not LoggedIn !! Nothing to display')
+            setMyBlogs([]);
             return ;
         }
         const response = await fetch(url, {
@@ -50,8 +51,6 @@ const Blogstate = (props) => {
         const url = host.concat('addblog');
         if(!Success){
             console.log('User not LoggedIn !! Nothing to display')
-            setAllBlogs([]);
-            setMyBlogs([]);
             return ;
         }
         const response = await fetch(url, {
@@ -62,8 +61,9 @@ const Blogstate = (props) => {
             },
             body: JSON.stringify({title,content})
         });
-        const result = response.json();
+        const result = await response.json();
         console.log(result);
+        GetMyBlogs();
     }
 
     //DeleteABlog to delete a particular blog of a user

@@ -45,8 +45,28 @@ const Userstate = (props) => {
             console.log(error);
         }
     }
+
+    const GetAUser = async (_id) => {
+        const url = host.concat(`getuser/${_id}`)
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+            });
+            const result = await response.json();
+            if(!result.success){
+                console.log("Unable to find the requested user")
+                return;
+            }
+            return result;
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
-        <UserContext.Provider value={{setauthtoken,CreateUser,Success,authtoken,LoginUser}}>
+        <UserContext.Provider value={{setSuccess,GetAUser,setauthtoken,CreateUser,Success,authtoken,LoginUser}}>
             {props.children}
         </UserContext.Provider>
     )

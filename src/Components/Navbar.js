@@ -7,7 +7,7 @@ const Navbar = () => {
   const history = useHistory();
   const [LoggedIN, setLoggedIN] = useState(true);
   const usercontext = useContext(UserContext)
-  const {authtoken,setauthtoken} = usercontext;
+  const {authtoken,setauthtoken,setSuccess} = usercontext;
   useEffect(() => {
     setLoggedIN(!LoggedIN);
   }, [authtoken])
@@ -45,6 +45,7 @@ const Navbar = () => {
             <form className="d-flex navform">
               <Link className={` ${LoggedIN?'':'d-none'}  btn btn-outline-success mx-2 navform-btn`} to="/login" role="button" onClick={()=>{
                 setauthtoken('')
+                setSuccess(false);
               }}>LogOut</Link>
               <Link className={` ${!LoggedIN?'':'d-none'}  btn btn-outline-success mx-2 navform-btn`} to="/login" role="button">LogIn</Link>
               <Link className={` ${!LoggedIN?'':'d-none'}  btn btn-outline-success mx-2 navform-btn`} to="/signup" role="button">SignUp</Link>

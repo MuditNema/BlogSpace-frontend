@@ -5,11 +5,27 @@ import UserContext from "../UserContext/Usercontext";
 import BlogItem from "./BlogItem";
 const MyBlogs = () => {
   const blogcontext = useContext(BlogContext);
-  const { MyBlogs, GetMyBlogs } = blogcontext;
+  const { MyBlogs, GetMyBlogs , AddaBlog} = blogcontext;
   useEffect(() => {
     GetMyBlogs();
     // eslint-disable-next-line
   }, []);
+
+  const [Title, setTitle] = useState('')
+  const [Content, setContent] = useState('')
+  const [BlogItems, setBlogItems] = useState({title:'',content:''});
+  const OnKeyChange = (e) => {
+    if(e.target.name==='title') {setTitle(e.target.value)}
+    if(e.target.name==='content') {setContent(e.target.value)}
+    setBlogItems({...BlogItems,[e.target.name]:e.target.value})
+  }
+
+  const CreateABlog = (e) => {
+    e.preventDefault();
+    AddaBlog(BlogItems.title,BlogItems.content)
+  }
+
+
   return (
     <>
       {/* Paste the modal here */}
@@ -31,6 +47,7 @@ const MyBlogs = () => {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                
               ></button>
             </div>
 
@@ -46,6 +63,8 @@ const MyBlogs = () => {
                     id="title"
                     name="title"
                     aria-describedby="emailHelp"
+                    value={Title}
+                    onChange={OnKeyChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -58,6 +77,8 @@ const MyBlogs = () => {
                     name="content"
                     className="form-control"
                     id="content"
+                    value={Content}
+                    onChange={OnKeyChange}
                   />
                 </div>
 
@@ -73,6 +94,7 @@ const MyBlogs = () => {
                     type="button"
                     className="btn btn-primary"
                     data-bs-dismiss="modal"
+                    onClick={CreateABlog}
                   >
                     Save changes
                   </button>
@@ -113,7 +135,7 @@ const MyBlogs = () => {
         </div>
         <div className=" row">
           {MyBlogs.map((e, i) => {
-            return <BlogItem element={e} index={i} />;
+            return <BlogItem element={e}  editable={true} index={i} />;
           })}
         </div>
       </div>
