@@ -7,6 +7,7 @@ import Signup from "./Components/Signup";
 import Blogstate from "./BlogContext/Blogstate";
 import Userstate from "./UserContext/Userstate";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import BlogForm from "./Components/BlogForm";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
               </Route>
               <Route exact path="/myblogs">
                 <MyBlogs />
+              </Route>
+              <Route exact path="/writeblog">
+                <BlogForm />
               </Route>
             </Switch>
           </Router>

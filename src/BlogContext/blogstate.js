@@ -61,7 +61,7 @@ const Blogstate = (props) => {
         try {
             if(!Success){
                 console.log('User not LoggedIn !! Nothing to display')
-                return ;
+                return false;
             }
             const response = await fetch(url, {
                 method: 'POST', 
@@ -74,7 +74,7 @@ const Blogstate = (props) => {
             const result = await response.json();
             console.log(result);
             GetMyBlogs();
-            
+            return true;
         } catch (error) {
             console.log(error);
         }
@@ -98,9 +98,9 @@ const Blogstate = (props) => {
                   'auth-token' : authtoken
                 }
             });
-            const result = response.json();
+            const result = await response.json();
             console.log(result);
-            
+            GetMyBlogs();
         } catch (error) {
             console.log(error);
         }
@@ -125,7 +125,7 @@ const Blogstate = (props) => {
             });
             const result = response.json();
             console.log(result);
-            
+            GetMyBlogs();
         } catch (error) {
             console.log(error)
         }
@@ -137,8 +137,6 @@ const Blogstate = (props) => {
         try {
             if(!Success){
                 console.log('User not LoggedIn !! Cannot Delete')
-                setAllBlogs([]);
-                setMyBlogs([]);
                 return ;
             }
             const response = await fetch(url, {
@@ -149,9 +147,9 @@ const Blogstate = (props) => {
                 },
                 body: JSON.stringify({title,content})
             });
-            const result = response.json();
+            const result = await response.json();
             console.log(result);
-            
+            GetMyBlogs();
         } catch (error) {
             console.log(error);
         }
