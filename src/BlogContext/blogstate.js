@@ -112,9 +112,7 @@ const Blogstate = (props) => {
         try {
             if(!Success){
                 console.log('User not LoggedIn !! Cannot Delete')
-                setAllBlogs([]);
-                setMyBlogs([]);
-                return ;
+                return false;
             }
             const response = await fetch(url, {
                 method: 'DELETE', 
@@ -126,21 +124,22 @@ const Blogstate = (props) => {
             const result = response.json();
             console.log(result);
             GetMyBlogs();
+            return true;
         } catch (error) {
             console.log(error)
         }
     }
 
     //Updating a blog for the user
-    const UpdateBlog = async (_id,title,content) => {
-        const url = host.concat(`updateblog/${_id}`);
+    const UpdateBlog = async (id,title,content) => {
+        const url = host.concat(`updateblog/${id}`);
         try {
             if(!Success){
                 console.log('User not LoggedIn !! Cannot Delete')
                 return ;
             }
             const response = await fetch(url, {
-                method: 'DELETE', 
+                method: 'PUT', 
                 headers: {
                   'Content-Type': 'application/json',
                   'auth-token' : authtoken
