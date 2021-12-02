@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import BlogContext from "../BlogContext/Blogcontext";
 import UserContext from "../UserContext/Usercontext";
+import { Link } from "react-router-dom";
 const BlogItem = (props) => {
   const usercontext = useContext(UserContext);
   const blogcontext = useContext(BlogContext);
   const { GetAUser } = usercontext;
-  const { DeleteABlog } = blogcontext;
+  const { DeleteABlog  , setBlogCreds} = blogcontext;
   const [User, setUser] = useState({});
   useEffect(() => {
     const Run = async() => {
@@ -27,7 +28,7 @@ const BlogItem = (props) => {
           </div>
           <div className="card-body">
             <h5 className="card-title">{props.element.title}</h5>
-            <p className="card-text">{props.element.content}</p>
+            <p className="card-text">{props.element.content.length > 150 ? `${props.element.content.slice(0,150)}...` :  props.element.content}</p>
             <div>
               <i
               onClick={()=>{
@@ -48,9 +49,12 @@ const BlogItem = (props) => {
                   props.editable ? "" : "d-none"
                 } fas fa-trash-alt mx-2`}
               ></i>
-              <a href="#" className="btn btn-primary">
+              <Link onClick={()=>{
+                setBlogCreds(props.element);
+                console.log(props.element);
+              }} to={`/${props.element._id}`} className="btn btn-primary">
                 See The Blog
-              </a>
+              </Link>
             </div>
           </div>
         </div>

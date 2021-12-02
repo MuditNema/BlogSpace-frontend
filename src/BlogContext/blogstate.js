@@ -9,6 +9,7 @@ const Blogstate = (props) => {
     const {Success,authtoken} = usercontext;
     const [AllBlogs, setAllBlogs] = useState([]);
     const [MyBlogs, setMyBlogs] = useState([]);
+    const [BlogCreds, setBlogCreds] = useState({})
     //GetAllBlogs function to fetch all the blogs present in the database
     const GetAllBlogs = async () => {
             try {
@@ -155,7 +156,7 @@ const Blogstate = (props) => {
     }
 
     return (
-        <BlogContext.Provider value={{MyBlogs,AllBlogs,GetAllBlogs,GetMyBlogs,AddaBlog,UpdateBlog,DeleteAllBlog,DeleteABlog}}>
+        <BlogContext.Provider value={{BlogCreds,setBlogCreds,MyBlogs,AllBlogs,GetAllBlogs,GetMyBlogs,AddaBlog,UpdateBlog,DeleteAllBlog,DeleteABlog}}>
             {props.children}
         </BlogContext.Provider>
     )

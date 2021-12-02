@@ -8,6 +8,7 @@ import Blogstate from "./BlogContext/Blogstate";
 import Userstate from "./UserContext/Userstate";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BlogForm from "./Components/BlogForm";
+import ViewBlog from "./Components/ViewBlog";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
               </Route>
               <Route exact path="/writeblog">
                 <BlogForm />
+              </Route>
+              <Route exact path="/:id">
+                <ViewBlog />
               </Route>
             </Switch>
           </Router>

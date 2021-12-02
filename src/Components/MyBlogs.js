@@ -3,10 +3,12 @@ import { useState, useEffect, useContext } from "react";
 import BlogContext from "../BlogContext/Blogcontext";
 import UserContext from "../UserContext/Usercontext";
 import BlogItem from "./BlogItem";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const MyBlogs = () => {
   const history = useHistory();
   const blogcontext = useContext(BlogContext);
+  const usercontext = useContext(UserContext);
+  const {Success} = usercontext;
   const { MyBlogs, GetMyBlogs,  UpdateBlog ,DeleteAllBlog} = blogcontext;
   const [UserBlog, setUserBlog] = useState({title:"",content:""});
   const [BlogTitle, setBlogTitle] = useState("");
@@ -14,6 +16,7 @@ const MyBlogs = () => {
   const [ID, setID] = useState('');
   useEffect(() => {
     GetMyBlogs();
+    console.log(Success);
     // eslint-disable-next-line
   }, []);
 
@@ -26,14 +29,15 @@ const MyBlogs = () => {
         >
           <div className="d-flex flex-row flex-wrap justify-content-between blog-menu">
             <div>
-              <a
+              <button
                 className=" btn btn-outline-secondary my-2 mx-3"
                 href="#"
                 role="button"
                 style={{ width: "fit-content" }}
+                disabled={!Success}
               >
                 View Profile
-              </a>
+              </button>
             </div>
             <div>
               <button
@@ -43,13 +47,17 @@ const MyBlogs = () => {
                 onClick={async ()=>{
                   await DeleteAllBlog();
                 }}
+                disabled={!Success}
               >
                 Delete My All Blogs
               </button>
             </div>
           </div>
-          <div className="card-body">
-            <h5 className="card-title">
+            <div className={`text-center mt-5 ${!Success?'':'d-none'} `}>
+              Want to be a Blogger ? <Link to='/login'>Click here to Login</Link>
+            </div>
+          <div className="card-body" >
+            <h5 className={`card-title ${Success?'':'d-none'}`} >
               Write Blog
               <i
                 className="fas fa-plus mx-1"
@@ -58,7 +66,7 @@ const MyBlogs = () => {
                 }}
               ></i>
             </h5>
-            <p className="card-text">
+            <p className={`card-text ${Success?'':'d-none'}`}>
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
