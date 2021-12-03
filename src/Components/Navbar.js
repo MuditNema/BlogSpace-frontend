@@ -5,7 +5,6 @@ import UserContext from "../UserContext/Usercontext";
 import Alert from "./Alert";
 const Navbar = () => {
   const location = useLocation();
-  const history = useHistory();
   const [LoggedIN, setLoggedIN] = useState(true);
   const usercontext = useContext(UserContext)
   const {authtoken,setauthtoken,setSuccess} = usercontext;

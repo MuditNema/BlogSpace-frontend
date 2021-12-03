@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect ,useContext} from "react";
+import {  useEffect ,useContext} from "react";
 import BlogItem from "./BlogItem";
 import BlogContext from "../BlogContext/Blogcontext";
 
