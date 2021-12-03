@@ -15,7 +15,7 @@ const BlogItem = (props) => {
     const Run = async() => {
       let value = await GetAUser(props.element.user);
       setUser(value.GetUser);
-      console.log(value.GetUser);
+      // console.log(value.GetUser);
     }
     Run();
   }, [])

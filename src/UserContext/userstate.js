@@ -18,10 +18,11 @@ const Userstate = (props) => {
                 body: JSON.stringify({fname,lname,email,password}) 
               });
               const result = await response.json();
-              console.log(result.success);
+            //   console.log(result.success);
               return result.success;
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            return false;
         }
         
     }
@@ -39,10 +40,11 @@ const Userstate = (props) => {
               const result = await response.json();
               setSuccess(result.success);
               setauthtoken(result.authtoken);
-              console.log(result);
+            //   console.log(result);
               return result.success;
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            return false;
         }
     }
 
@@ -57,12 +59,13 @@ const Userstate = (props) => {
             });
             const result = await response.json();
             if(!result.success){
-                console.log("Unable to find the requested user")
+                // console.log("Unable to find the requested user")
                 return;
             }
             return result;
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            return false;
         }
     }
     return (

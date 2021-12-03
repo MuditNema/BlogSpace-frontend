@@ -19,7 +19,7 @@ const MyBlogs = () => {
   const [ID, setID] = useState('');
   useEffect(() => {
     GetMyBlogs();
-    console.log(Success);
+    // console.log(Success);
     // eslint-disable-next-line
   }, []);
 

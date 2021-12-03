@@ -23,11 +23,11 @@ const Blogstate = (props) => {
                     method : 'GET'
                 });
                 const result = await response.json();
-                console.log(result);
                 setAllBlogs(result.reverse());
                 
             } catch (error) {
-                console.log(error);
+                // console.log(error);
+                return false;
             }
         
     }
@@ -37,7 +37,6 @@ const Blogstate = (props) => {
         const url = host.concat('fetchblogs');
         try {
             if(!Success){
-                console.log('User not LoggedIn !! Nothing to display')
                 setMyBlogs([]);
                 return ;
             }
@@ -48,11 +47,11 @@ const Blogstate = (props) => {
                 }
             });
             const result = await response.json();
-            console.log(result);
             setMyBlogs(result.reverse());
             
         } catch (error) {
-            console.log(error)
+            // console.log(error)
+            return false;
         }
     }
 
@@ -61,7 +60,7 @@ const Blogstate = (props) => {
         const url = host.concat('addblog');
         try {
             if(!Success){
-                console.log('User not LoggedIn !! Nothing to display')
+                // console.log('User not LoggedIn !! Nothing to display')
                 return false;
             }
             const response = await fetch(url, {
@@ -80,7 +79,8 @@ const Blogstate = (props) => {
             GetMyBlogs();
             return true;
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            return false;
         }
     }
 
@@ -90,7 +90,7 @@ const Blogstate = (props) => {
         const url = host.concat(`deleteblog/${_id}`);
         try {
             if(!Success){
-                console.log('User not LoggedIn !! Cannot Delete')
+                // console.log('User not LoggedIn !! Cannot Delete')
                 return false;
             }
             const response = await fetch(url, {
@@ -104,11 +104,12 @@ const Blogstate = (props) => {
             if(result.error){
                 return false;
             }
-            console.log(result);
+            // console.log(result);
             GetMyBlogs();
             return true;
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            return false;
         }
     }
 
@@ -117,7 +118,7 @@ const Blogstate = (props) => {
         const url = host.concat(`deleteallblogs`);
         try {
             if(!Success){
-                console.log('User not LoggedIn !! Cannot Delete')
+                // console.log('User not LoggedIn !! Cannot Delete')
                 return false;
             }
             const response = await fetch(url, {
@@ -129,13 +130,13 @@ const Blogstate = (props) => {
             });
             const result = await response.json();
             GetMyBlogs();
-            console.log(result);
+            // console.log(result);
             if(result.result.deletedCount === 0){
                 return false;
             }
             return true;
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             return false;
         }
     }
@@ -145,7 +146,7 @@ const Blogstate = (props) => {
         const url = host.concat(`updateblog/${id}`);
         try {
             if(!Success){
-                console.log('User not LoggedIn !! Cannot Delete')
+                // console.log('User not LoggedIn !! Cannot Delete')
                 return ;
             }
             const response = await fetch(url, {
@@ -161,10 +162,11 @@ const Blogstate = (props) => {
             if(result.error){
                 return false;
             }
-            console.log(result);
+            // console.log(result);
             return true;
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            return false;
         }
     }
 

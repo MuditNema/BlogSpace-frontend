@@ -15,7 +15,7 @@ const ViewBlog = () => {
         }
         const Run = async () => {
             let value = await GetAUser(BlogCreds.user);
-            console.log(value);
+            // console.log(value);
             setMyUser(value.GetUser);
         }
         Run();
