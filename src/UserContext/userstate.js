@@ -18,7 +18,7 @@ const Userstate = (props) => {
                 body: JSON.stringify({fname,lname,email,password}) 
               });
               const result = await response.json();
-              console.log(result);
+              console.log(result.success);
               return result.success;
         } catch (error) {
             console.log(error);

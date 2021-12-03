@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import BlogContext from "../BlogContext/Blogcontext";
 import UserContext from "../UserContext/Usercontext";
 import { Link } from "react-router-dom";
+import AlertContext from "../AlertContext/Alertcontext";
 const BlogItem = (props) => {
   const usercontext = useContext(UserContext);
   const blogcontext = useContext(BlogContext);
+  const alertcontext = useContext(AlertContext);
+  const {ShowAlert} = alertcontext;
   const { GetAUser } = usercontext;
   const { DeleteABlog  , setBlogCreds} = blogcontext;
   const [User, setUser] = useState({});
@@ -42,8 +45,14 @@ const BlogItem = (props) => {
                 className={`${props.editable ? "" : "d-none"} fas fa-pen mx-2`}
               ></i>
               <i
-                onClick={() => {
-                  DeleteABlog(props.element._id);
+                onClick={async() => {
+                  let ans = await DeleteABlog(props.element._id);
+                  if(ans){
+                    await ShowAlert('success','Blog Deleted Successfully')
+                  }
+                  else{
+                    await ShowAlert('danger','Failed to delete the blog')
+                  }
                 }}
                 className={`${
                   props.editable ? "" : "d-none"

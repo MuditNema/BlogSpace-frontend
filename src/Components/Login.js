@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import UserContext from "../UserContext/Usercontext";
+import AlertContext from "../AlertContext/Alertcontext";
 const Login = () => {
   const history = useHistory();
   const [UserCreds, setUserCreds] = useState({ email: "", password: "" });
@@ -8,6 +9,8 @@ const Login = () => {
   const [Password, setPassword] = useState("");
   const usercontext = useContext(UserContext);
   const { LoginUser } = usercontext;
+  const alertcontext = useContext(AlertContext);
+  const {ShowAlert} = alertcontext;
   const KeyChange = async (e) => {
     if (e.target.name === "email") {
       setEmail(e.target.value);
@@ -21,7 +24,11 @@ const Login = () => {
     e.preventDefault();
     let ans = await LoginUser(UserCreds.email, UserCreds.password);
     if (ans) {
+      await ShowAlert('success','Login Successful !!! Welcome')
       history.push("/myblogs");
+    }
+    else{
+      await ShowAlert('danger','Login failed !!! Please try again')
     }
   };
   return (

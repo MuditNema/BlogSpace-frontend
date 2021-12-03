@@ -2,6 +2,7 @@ import React from "react";
 import UserContext from "../UserContext/Usercontext";
 import { useContext ,useState } from "react";
 import { useHistory } from "react-router-dom";
+import AlertContext from "../AlertContext/Alertcontext";
 const Signup = () => {
   const history = useHistory();
   const [UserCreds, setUserCreds] = useState({fname:'',lname:'',email:'',password:''});
@@ -10,6 +11,8 @@ const Signup = () => {
   const [Email, setEmail] = useState('')
   const [Password, setPassword] = useState('')
   const usercontext = useContext(UserContext);
+  const alertcontext = useContext(AlertContext);
+  const {ShowAlert} = alertcontext;
   const {CreateUser} = usercontext;
   const KeyChange = async (e) => {
     if(e.target.name === 'fname') {setFname(e.target.value)}
@@ -20,13 +23,18 @@ const Signup = () => {
   }
   const SubmitClick = async (e) => {
     e.preventDefault();
-    if(CreateUser(UserCreds.fname,UserCreds.lname,UserCreds.email,UserCreds.password)){
+    let ans = await CreateUser(UserCreds.fname,UserCreds.lname,UserCreds.email,UserCreds.password);
+    if(ans){
+      await ShowAlert('success','SignUp Successful !!! User Registered')
       history.push('/login');
+    }
+    else{
+      await ShowAlert('danger','SignUp Fail !!! User Cannot be registered')
     }
   }
   return (
     <>
-    <form action="" onSubmit={SubmitClick}>
+    <form onSubmit={SubmitClick}>
       <div className="container mt-3">
         <div className="form-floating mb-3">
           <input

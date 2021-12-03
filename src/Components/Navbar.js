@@ -2,6 +2,7 @@ import React from "react";
 import { useState , useEffect , useContext} from "react";
 import { useLocation , Link , useHistory} from "react-router-dom";
 import UserContext from "../UserContext/Usercontext";
+import Alert from "./Alert";
 const Navbar = () => {
   const location = useLocation();
   const history = useHistory();
@@ -12,6 +13,7 @@ const Navbar = () => {
     setLoggedIN(!LoggedIN);
   }, [authtoken])
   return (
+    <>
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
@@ -54,6 +56,8 @@ const Navbar = () => {
         </div>
       </nav>
     </div>
+    <Alert/>
+    </>
   );
 };
 

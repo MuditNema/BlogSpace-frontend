@@ -1,6 +1,7 @@
 import React,{useContext,useState} from "react";
 import BlogContext from "../BlogContext/Blogcontext";
 import { useHistory } from "react-router-dom";
+import AlertContext from "../AlertContext/Alertcontext";
 const BlogForm = () => {
   const blogcontext = useContext(BlogContext);
   const history = useHistory();
@@ -8,6 +9,8 @@ const BlogForm = () => {
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   const [BlogItems, setBlogItems] = useState({ title: "", content: "" });
+  const alertcontext = useContext(AlertContext);
+  const {ShowAlert} = alertcontext;
   const OnKeyChange = (e) => {
     if (e.target.name === "title") {
       setTitle(e.target.value);
@@ -22,7 +25,13 @@ const BlogForm = () => {
     e.preventDefault();
     let ans = await AddaBlog(BlogItems.title, BlogItems.content);
     if(ans){
-        history.push('/myblogs');
+      await ShowAlert('success','Blog Added successfully')
+      history.push('/myblogs');
+    }
+    else{
+      await ShowAlert('danger','Failed to add blog!!Please try again')
+      setTitle('');
+      setContent('');
     }
   };
 

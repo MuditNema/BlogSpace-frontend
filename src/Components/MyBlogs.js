@@ -4,10 +4,13 @@ import BlogContext from "../BlogContext/Blogcontext";
 import UserContext from "../UserContext/Usercontext";
 import BlogItem from "./BlogItem";
 import { Link, useHistory } from "react-router-dom";
+import AlertContext from "../AlertContext/Alertcontext";
 const MyBlogs = () => {
   const history = useHistory();
   const blogcontext = useContext(BlogContext);
   const usercontext = useContext(UserContext);
+  const alertcontext =  useContext(AlertContext);
+  const {ShowAlert} =  alertcontext;
   const {Success} = usercontext;
   const { MyBlogs, GetMyBlogs,  UpdateBlog ,DeleteAllBlog} = blogcontext;
   const [UserBlog, setUserBlog] = useState({title:"",content:""});
@@ -45,7 +48,13 @@ const MyBlogs = () => {
                 role="button"
                 style={{ width: "fit-content" }}
                 onClick={async ()=>{
-                  await DeleteAllBlog();
+                  let ans = await DeleteAllBlog();
+                  if(ans){
+                    await ShowAlert('success' , 'All Blogs deleted successfully!')
+                  }
+                  else{
+                    await ShowAlert('danger' , 'Failed to delete Blogs (Either there are no blogs or some error occured)')
+                  }
                 }}
                 disabled={!Success}
               >
@@ -100,7 +109,13 @@ const MyBlogs = () => {
                   <div className="modal-body">
                     <form onSubmit={async (e)=>{
                       e.preventDefault();
-                      UpdateBlog(ID,UserBlog.title,UserBlog.content)
+                      let ans = await UpdateBlog(ID,UserBlog.title,UserBlog.content)
+                      if(ans){
+                        ShowAlert('success' , 'Blog has been updated successfully')
+                      }
+                      else{
+                        ShowAlert('danger' , 'Failed to update the blog')
+                      }
                     }}>
                       <div className="mb-3">
                         <label htmlFor="title" className="form-label">

@@ -73,7 +73,10 @@ const Blogstate = (props) => {
                 body: JSON.stringify({title,content})
             });
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
+            if(result.error){
+                return false;
+            }
             GetMyBlogs();
             return true;
         } catch (error) {
@@ -88,9 +91,7 @@ const Blogstate = (props) => {
         try {
             if(!Success){
                 console.log('User not LoggedIn !! Cannot Delete')
-                setAllBlogs([]);
-                setMyBlogs([]);
-                return ;
+                return false;
             }
             const response = await fetch(url, {
                 method: 'DELETE', 
@@ -100,8 +101,12 @@ const Blogstate = (props) => {
                 }
             });
             const result = await response.json();
+            if(result.error){
+                return false;
+            }
             console.log(result);
             GetMyBlogs();
+            return true;
         } catch (error) {
             console.log(error);
         }
@@ -122,12 +127,16 @@ const Blogstate = (props) => {
                   'auth-token' : authtoken
                 }
             });
-            const result = response.json();
-            console.log(result);
+            const result = await response.json();
             GetMyBlogs();
+            console.log(result);
+            if(result.result.deletedCount === 0){
+                return false;
+            }
             return true;
         } catch (error) {
             console.log(error)
+            return false;
         }
     }
 
@@ -148,8 +157,12 @@ const Blogstate = (props) => {
                 body: JSON.stringify({title,content})
             });
             const result = await response.json();
-            console.log(result);
             GetMyBlogs();
+            if(result.error){
+                return false;
+            }
+            console.log(result);
+            return true;
         } catch (error) {
             console.log(error);
         }
