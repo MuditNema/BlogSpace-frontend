@@ -2,7 +2,7 @@ import React from 'react'
 import UserContext from './Usercontext';
 import { useState } from 'react'
 const Userstate = (props) => {
-    const host = 'http://localhost:5000/user/';
+    const host = `http://localhost:${process.env.React_App_DB_PORT}/blog/`
     const [Success, setSuccess] = useState(false);
     const [authtoken, setauthtoken] = useState('');
     //CreateUser function to register user in our database

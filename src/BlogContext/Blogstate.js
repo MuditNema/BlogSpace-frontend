@@ -4,7 +4,7 @@ import { useState } from 'react'
 import UserContext from '../UserContext/Usercontext';
 import { logDOM } from '@testing-library/dom';
 const Blogstate = (props) => {
-    const host = "http://localhost:5000/blog/"
+    const host = `http://localhost:${process.env.React_App_DB_PORT}/blog/`
     const usercontext = useContext(UserContext);
     const {Success,authtoken} = usercontext;
     const [AllBlogs, setAllBlogs] = useState([]);
